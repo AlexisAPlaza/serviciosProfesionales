@@ -1,0 +1,27 @@
+import profesionales.*
+import universidades.*
+import empresas.*
+
+describe "Etapa 1"{
+	const uSanMartin = new Universidad(provincia="Buenos Aires",honorariosRecom=3500)
+	const uRosario = new Universidad(provincia="Santa Fe",honorariosRecom=2800)
+	const uCorrientes = new Universidad(provincia="Corrientes",honorariosRecom=4200)
+	const uHurlingham = new Universidad(provincia="Buenos Aires",honorariosRecom=8800)
+	
+	const juana = new ProfesionalVinculado(universidad = uRosario)
+	const melina = new ProfesionalAsociado(universidad = uCorrientes)
+	const rocio = new ProfesionalLibre(universidad = uHurlingham,honorariosHora=5000,provinciasTrabajo = #{"Santa Fe","Córdoba","Buenos Aires"})
+	const luciana = new ProfesionalLibre(universidad = uRosario,honorariosHora=3200,provinciasTrabajo = #{"Santa Fe","Entre Rios"})
+	
+	
+	const empresaUno = new EmpresasServicios(honorarioReferencia=3500)
+	
+test "empresa uno"{
+	empresaUno.contratarA(juana)
+	empresaUno.contratarA(melina)
+	empresaUno.contratarA(rocio)
+	empresaUno.contratarA(luciana)
+	assert.equals(2,empresaUno.cuantosEstudiaronEn(uRosario))
+	}
+
+}
